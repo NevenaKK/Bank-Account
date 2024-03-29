@@ -1,0 +1,32 @@
+package com.jwd.test.model;
+
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
+public class TipRacuna {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	
+	@Column(unique = true, nullable = false)
+    private String naziv;
+	
+	 @Column
+	 private int provizija;
+	 
+	 @ManyToOne
+	 private Banka banka;
+	 
+	 @OneToMany
+	 private List<TipRacuna> tipoviRacuna;
+
+}

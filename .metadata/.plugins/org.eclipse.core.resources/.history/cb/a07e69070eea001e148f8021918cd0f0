@@ -1,0 +1,45 @@
+package com.jwd.test.web.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.jwd.test.model.Zadatak;
+import com.jwd.test.web.dto.ZadatakDTO;
+
+@RestController
+@RequestMapping(value = "/api/racuni", produces = MediaType.APPLICATION_JSON_VALUE)
+
+public class RacunController {
+	
+	@Autowired
+	Racun
+
+	 @GetMapping
+	    public ResponseEntity<List<ZadatakDTO>> getAll(
+	    		 @RequestParam(required=false) String zadatakIme,
+	             @RequestParam(required=false) Long sprintId,
+	    		 @RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo){
+	    		
+		 Page<Zadatak> zadaci=zadatakService.search(zadatakIme, sprintId,pageNo);
+		 
+		 HttpHeaders headers = new HttpHeaders();
+	     headers.add("Total-Pages", Integer.toString(zadaci.getTotalPages()));
+	     
+	     return new ResponseEntity<List<ZadatakDTO>>(toZadatakDTO.convert(zadaci.getContent()),headers,HttpStatus.OK);
+	    	
+	           
+	    }
+
+
+	
+}

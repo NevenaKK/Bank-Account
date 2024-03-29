@@ -1,0 +1,16 @@
+package com.jwd.test.service;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
+import com.jwd.test.model.Banka;
+
+
+public interface BankaService {
+
+
+	List<Banka> findAll();
+	Banka getOne(Long id);
+	
+}

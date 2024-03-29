@@ -1,0 +1,37 @@
+package com.jwd.test.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
+public class Racun {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+	
+	 @Column( nullable = false)
+	private String imePrezime;
+	 
+	 @Column
+	    private String jmbg;
+	 
+	 @Column
+	    private String brojRacuna;
+	 
+	 @Column
+	    private int stanjeRacuna;
+	 
+	 @ManyToOne
+	 private TipRacuna tipRacuna;
+	 
+	 @ManyToOne
+	 private Banka banka;
+	 
+	 
+
+}
